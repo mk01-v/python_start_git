@@ -13,21 +13,23 @@ class AddGroup(unittest.TestCase):
         self.wd.implicitly_wait(5)
 
     def test_add_group(self):
-        #success = True
         wd = self.wd
-        # open homepage
-        wd.get("http://localhost/addressbook/")
-        # login
-        wd.find_element_by_name("user").click()
-        wd.find_element_by_name("user").clear()
-        wd.find_element_by_name("user").send_keys("admin")
-        wd.find_element_by_id("LoginForm").click()
-        wd.find_element_by_name("pass").click()
-        wd.find_element_by_name("pass").clear()
-        wd.find_element_by_name("pass").send_keys("secret")
-        wd.find_element_by_xpath("(.//*[normalize-space(text()) and normalize-space(.)='Password:'])[1]/following::input[2]").click()
-        # open groups page
+        self.open_home_page(wd)
+        self.login(wd)
+        self.open_group_page(wd)
+        self.create_group(wd)
+        self.return_to_group_page(wd)
+        self.logout(wd)
+
+    def logout(self, wd):
+        # logout
+        wd.find_element_by_link_text("Logout").click()
+
+    def return_to_group_page(self, wd):
+        # return groups page
         wd.find_element_by_link_text("groups").click()
+
+    def create_group(self, wd):
         # init group creation
         wd.find_element_by_name("new").click()
         # filling group
@@ -39,11 +41,27 @@ class AddGroup(unittest.TestCase):
         wd.find_element_by_name("group_header").send_keys("group_header_cool_logo")
         # submit group creation
         wd.find_element_by_name("submit").click()
-        # return groups page
+
+    def open_group_page(self, wd):
+        # open groups page
         wd.find_element_by_link_text("groups").click()
-        # logout
-        wd.find_element_by_link_text("Logout").click()
-    
+
+    def login(self, wd):
+        # login
+        wd.find_element_by_name("user").click()
+        wd.find_element_by_name("user").clear()
+        wd.find_element_by_name("user").send_keys("admin")
+        wd.find_element_by_id("LoginForm").click()
+        wd.find_element_by_name("pass").click()
+        wd.find_element_by_name("pass").clear()
+        wd.find_element_by_name("pass").send_keys("secret")
+        wd.find_element_by_xpath(
+            "(.//*[normalize-space(text()) and normalize-space(.)='Password:'])[1]/following::input[2]").click()
+
+    def open_home_page(self, wd):
+        # open homepage
+        wd.get("http://localhost/addressbook/")
+
     def is_element_present(self, how, what):
         try: self.wd.find_element(by=how, value=what)
         except NoSuchElementException as e: return False
