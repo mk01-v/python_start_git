@@ -15,7 +15,9 @@ class AddGroup(unittest.TestCase):
     def test_add_group(self):
         #success = True
         wd = self.wd
+        # open homepage
         wd.get("http://localhost/addressbook/")
+        # login
         wd.find_element_by_name("user").click()
         wd.find_element_by_name("user").clear()
         wd.find_element_by_name("user").send_keys("admin")
@@ -24,16 +26,22 @@ class AddGroup(unittest.TestCase):
         wd.find_element_by_name("pass").clear()
         wd.find_element_by_name("pass").send_keys("secret")
         wd.find_element_by_xpath("(.//*[normalize-space(text()) and normalize-space(.)='Password:'])[1]/following::input[2]").click()
+        # open groups page
         wd.find_element_by_link_text("groups").click()
+        # init group creation
         wd.find_element_by_name("new").click()
+        # filling group
         wd.find_element_by_name("group_name").click()
         wd.find_element_by_name("group_name").clear()
         wd.find_element_by_name("group_name").send_keys("group_name_cool")
         wd.find_element_by_name("group_header").click()
         wd.find_element_by_name("group_header").clear()
         wd.find_element_by_name("group_header").send_keys("group_header_cool_logo")
+        # submit group creation
         wd.find_element_by_name("submit").click()
+        # return groups page
         wd.find_element_by_link_text("groups").click()
+        # logout
         wd.find_element_by_link_text("Logout").click()
     
     def is_element_present(self, how, what):
