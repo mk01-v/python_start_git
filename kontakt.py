@@ -27,7 +27,7 @@ class kontakt:
         self.ayear = ayear
         self.secondary_address2 = secondary_address2
         self.secondary_home2 = secondary_home2
-        self.secondary_notese = secondary_notes
+        self.secondary_notes = secondary_notes
 
 
 
