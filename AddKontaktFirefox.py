@@ -17,14 +17,24 @@ class AddKontaktFirefox(unittest.TestCase):
         driver = self.driver
         self.open_home_page(driver)
         self.login(driver, admin="admin", password="secret")
-        self.add_new_record(driver, kontakt)
+        self.add_new_record(driver, kontakt(username="First_name: Artur", middle_name="Middle_name: 123", last_name="Last_name: Piroshkov", nickname="Nickname: 123",
+                            title="Title: addressbook", company="Company: OOO Privet", address="Address: Michurina 3", home="Home: 3",
+                            mobile="Mobile: 9232847147", work="Work: None", fax="Fax: None", email="E-mail: 123@gmail.com",
+                            email2="E-mail2: 234@gmail.com", email3="E-mail3: 345@gmail.com", homepage="Homepage: None", bday="28", bmonth="July", byear="1992",
+                            aday="1", amonth="January", ayear="2000", secondary_address2="Secondary-address: Michurina 10", secondary_home2="Secondary-home: 10",
+                            secondary_notes="Secondary-notes: None"))
         self.logout(driver)
 
     def test_add_kontakt_firefox2(self):
         driver = self.driver
         self.open_home_page(driver)
         self.login(driver, admin="admin", password="secret")
-        self.add_new_record(driver, kontakt)
+        self.add_new_record(driver, kontakt(username="", middle_name="", last_name="", nickname="",
+                            title="", company="", address="", home="",
+                            mobile="", work="", fax="", email="",
+                            email2="", email3="", homepage="", bday="28", bmonth="July", byear="1992",
+                            aday="1", amonth="January", ayear="2000", secondary_address2="", secondary_home2="",
+                            secondary_notes=""))
         self.logout(driver)
 
     def logout(self, driver):
