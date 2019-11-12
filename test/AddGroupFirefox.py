@@ -1,13 +1,5 @@
 # -*- coding: utf-8 -*-
-from fixture.application import application
-import pytest
 from model.group import Group
-
-@pytest.fixture()
-def app(request):
-    fixture = application()
-    request.addfinalizer(fixture.destroy)
-    return fixture
 
 def test_add_group(app):
     app.session.login(username ="admin", password ="secret")
