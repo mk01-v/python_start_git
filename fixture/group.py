@@ -39,3 +39,4 @@ class GroupHelper:
         wd = self.app.wd
         # return groups page
         wd.find_element_by_link_text("groups").click()
+        #wd.find_element_by_link_text("add new").click()
