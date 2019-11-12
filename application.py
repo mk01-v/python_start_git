@@ -1,9 +1,9 @@
 from selenium import webdriver
 
-class Application:
+class application:
     def __init__(self):
         self.wd = webdriver.Firefox()
-        self.wd.implicitly_wait(5)
+        self.wd.implicitly_wait(60)
 
     def open_home_page(self):
         wd = self.wd

@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from application import application
 import pytest
+import unittest
 from group import Group
 
 @pytest.fixture()
@@ -18,7 +19,4 @@ def test_add_empty_group(app):
     app.login(username ="admin", password ="secret")
     app.create_group(Group(name="", header=""))
     app.logout()
-
-def tearDown(self):
-    self.app.destroy()
 
